@@ -7,7 +7,7 @@ const image_router = require('./routers/image_router');
 /* load .env */
 dotenv.config();
 
-/* create Express app */
+/* create Express app *///
 const app = express();
 
 /* setup Express middleware */
