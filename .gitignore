@@ -1,0 +1,6 @@
+.DS_Store
+._*
+.env
+.jpg
+node_modules/
+.svg
