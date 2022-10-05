@@ -15,7 +15,7 @@ app.use('/', express.static(path.resolve(__dirname, 'public')));
 // Pug for SSR (static site rendering)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-// TODO: middleware for parsing POST body
+// TODO: middleware for parsing POST body @@@
 // TODO: middleware for uploading files
 
 /* host static resources (.css, .js, ...) */
