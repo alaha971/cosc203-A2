@@ -25,16 +25,16 @@ router.get('/create', async (req, res) => {
 router.post('/create', async (req, res) => {
     const bird = new profile({
         _id: new mongoose.mongo.ObjectId(),
-        primaryName: req.body.primaryName,
-        englishName: req.body.englishName,
-        scientificName: req.body.scientificName,
+        primary_name: req.body.primary_name,
+        english_name: req.body.english_name,
+        scientific_name: req.body.scientific_name,
         order: req.body.order,
         family: req.body.family,
-        otherName: req.body.otherName,
+        other_names: req.body.other_names,
         status: req.body.status,
         photo: {
-            credit: req.body.credit,
-            source: req.body.source
+            credit: req.body.photo_credit,
+            source: req.body.photo_source
         },
         size: {
             length: {
@@ -83,37 +83,50 @@ router.get('/:id', async (req, res) => {
 
     const b = await profile.findOne({ _id: id })
 
-    // render the Pug template 'home.pug' with the filtered data
-
-    // res.redirect(id);
+    res.render('view', {
+        bird: b,
+    });
 });
 
 // TODO: Update bird route(s)
-router.post(':id/update', async (req, res) => {
-
-    const db_info = await profile.updateOne(
-        { _id: id },
-        { primary_name: req.body.primary_name },
-        { english_name: req.body.english_name },
-        { scientific_name: req.body.scientific_name },
-        { order: req.body.order },
-        { family: req.body.family },
-        { other_name: req.body.other_name },
-        { status: req.body.status },
-        //     { photo: { credit: req.body.photo.credit },
-        //              { source: req.body.photo.source } },
-        // { size: { length: req.body.size.length },
-        //     { weight: req.body.size.weight }
-        // },
+router.post('/:id/update', async (req, res) => {
+    const id = req.params.id;
+    console.log(req.body.photo_source);
+    const db_info = (
+        {
+            primary_name: req.body.primary_name,
+            english_name: req.body.english_name,
+            scientific_name: req.body.scientific_name,
+            order: req.body.order,
+            family: req.body.family,
+            other_names: req.body.other_names,
+            status: req.body.status,
+            photo: {
+                credit: req.body.photo_credit,
+                source: req.body.photo_source
+            },
+            size: {
+                length: {
+                    value: req.body.length,
+                    units: 'cm'
+                },
+                weight: {
+                    value: req.body.weight,
+                    units: 'g'
+                }
+            }
+        }
     )
 
-    // console.log(db_info, `birds/${birds._id}`);
-    // response.status(200).send("success! edited message");
-    const b = await profile.findOne({ _id: id })
-
-    res.render('edit', {
-        birds: b,
+    const filter = { _id: id }
+    let doc = await profile.findOneAndUpdate(filter, db_info, {
+        new: true
     });
+    doc.update();
+    console.log(doc);
+
+    // response.status(200).send("success! edited message");
+    res.redirect('/');
 });
 
 

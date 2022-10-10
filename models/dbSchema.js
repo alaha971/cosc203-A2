@@ -7,7 +7,7 @@ const birdSchema = new mongoose.Schema({
     scientific_name: String,
     order: String,
     family: String,
-    other_names: String,
+    other_names: [String],
     status: String,
     photo: {
         credit: String,
