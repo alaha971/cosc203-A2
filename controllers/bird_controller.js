@@ -1,11 +1,13 @@
-const birds_json = require('../public/nzbird.json');
+// const birds_json = require('../public/nzbird.json');
 const { bird_sort, search_string } = require('./bird_utils.js');
+const bird_model = require('../models/dbSchema');
 
 // get all birds (filtered)
-function filter_bird_data(search, status, sort) {
+async function filter_bird_data(search, status, sort) {
     // var results = birds;
-    var results = birds_json;
-    
+    // var results = birds_json;
+    var results = await bird_model.find({});
+
     // filter by conservation status 
     if (status !== undefined && status !== "All") {
         results = results.filter((b) => b.status == status);
@@ -18,7 +20,7 @@ function filter_bird_data(search, status, sort) {
     if (sort !== undefined) {
         results = bird_sort(results, sort);
     }
-    
+
     return results;
 }
 

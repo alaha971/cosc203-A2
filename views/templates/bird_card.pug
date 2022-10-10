@@ -26,4 +26,5 @@ section(class='card')
             li
                 b Weight 
                 span=`${bird.size.weight.value} ${bird.size.weight.units}`
-            <a href="/birds/#{bird.}"><button>View Bird</button></a>
+            a(href=`/birds/${bird._id}`)
+                button(type="button") View Bird

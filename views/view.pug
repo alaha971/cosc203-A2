@@ -1,0 +1,88 @@
+head
+  title COSC203: birds of Aotearoa
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(rel='stylesheet' href='/styles/layout.css')
+  link(rel='stylesheet' href='/styles/theme.css')
+  link(rel='stylesheet' href='/styles/conservation-status.css')
+  link(rel='stylesheet' href='/styles/cards.css')
+  script(defer='' src='/scripts/populate_form.js')
+header
+  img(src='/kiwi-logo.svg')
+  h1 birds of Aotearoa
+aside
+  a(href='/')
+    button Home
+  h2 Conservation Status
+  ul
+    li
+      .circle-small.Not-Threatened
+      span Not Threatened
+    li
+      .circle-small.Naturally-Uncommon
+      span Naturally Uncommon
+    li
+      .circle-small.Relict
+      span Relict
+    li
+      .circle-small.Recovering
+      span Recovering
+    li
+      .circle-small.Declining
+      span Declining
+    li
+      .circle-small.Nationally-Increasing
+      span Nationally Increasing
+    li
+      .circle-small.Nationally-Vulnerable
+      span Nationally Vulnerable
+    li
+      .circle-small.Nationally-Endangered
+      span Nationally Endangered
+    li
+      .circle-small.Nationally-Critical
+      span Nationally Critical
+    li
+      .circle-small.Data-Deficient
+      span Data Deficient
+  p
+    | Conservation status from 
+    a(href='https://www.doc.govt.nz/nature/conservation-status/') DOC website
+main
+  section.card
+    .card-image
+      img(src=`/images/${bird.photo.source}` alt=`Photo of ${bird.primary_name}`)
+      .card-title
+        p(lang='mi') #{bird.primary_name}
+        span Photo by #{bird.photo.credit}
+      .circle.Nationally-Endangered
+    .card-content
+      h2.card-title  
+      ul
+        li
+          b Scientific
+          span #{bird.scientific_name}
+        li
+          b Family
+          span #{bird.family}
+        li
+          b Order 
+          span #{bird.order}
+        li
+          b Status 
+          span #{bird.status}
+        li
+          b Length 
+          span #{bird.size.length.value} cm
+        li
+          b Weight 
+          span #{bird.size.weight.value} g
+        a(href=`/birds/${bird._id}/edit`)
+          button Edit birds
+        a(href=`/birds/${bird._id}/delete`)
+          button Delete birds
+footer
+  p
+    span Data licensed from 
+    a(href='https://www.birdsnz.org.nz/') birds New Zealand 
+    span for educational use within the University of Otago.
