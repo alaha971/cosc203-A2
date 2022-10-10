@@ -1,72 +1,72 @@
 head
-  title COSC203: birdss of Aotearoa
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1')
-  link(rel='stylesheet' href='/styles/layout.css')
-  link(rel='stylesheet' href='/styles/theme.css')
-  link(rel='stylesheet' href='/styles/cards.css')
-  script(defer='' src='/scripts/preview_image.js')
+    title COSC203: birdss of Aotearoa
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='/styles/layout.css')
+    link(rel='stylesheet' href='/styles/theme.css')
+    link(rel='stylesheet' href='/styles/cards.css')
+    script(defer='' src='/scripts/preview_image.js')
 header
-  img(src='/kiwi-logo.svg')
-  h1 birdss of Aotearoa
+    img(src='/kiwi-logo.svg')
+    h1 birdss of Aotearoa
 aside
-  a(href='/')
-    button Home
+    a(href='/')
+        button Home
 main
-  div
-    h2
-    form(action='/birdss/create' method='POST' enctype='multipart/form-data')
-      input(type='hidden' name='id')
-      fieldset
-        legend Common Names
-        label(for='primary_name') Primary Name
-        input(type='text' name='primary_name' value=`${birds.primary_name}` required='')
-        label(for='english_name') English Name
-        input(type='text' name='english_name' value=`${birds.english_name}` required='')
-        label(for='other_names') Other Names
-        textarea(name='other_names' value=`${birds.other_names}` rows='10' cols='50' )
-      fieldset
-        legend Taxonomy
-        label(for='scientific_name') Scientific Name
-        input(type='text' name='scientific_name' value=`${birds.scientific_name}` required='')
-        label(for='order') Order
-        input(type='text' name='order' value=`${birds.order}` required='')
-        label(for='family') Family
-        input(type='text' name='family' value=`${birds.family}` required='')
-      fieldset
-        legend Size
-        label(for='length') Length (cm)
-        input(type='number' name='length' value=`${birds.size.length.value}`)
-        label(for='weight') Weight (g)
-        input(type='number' name='weight' value=`${birds.size.weight.value}`)
-      fieldset
-        legend Conservation
-        label(for='status') Status
-        select#status(name='status')
-          option(selected=`${birds.status}`) Not Threatened
-          option(selected=`${birds.status}`) Not Threatened
-          option Naturally Uncommon
-          option Relict
-          option Recovering
-          option Declining
-          option Nationally Increasing
-          option Nationally Vulnerable
-          option Nationally Endangered
-          option Nationally Critical
-          option Data Deficient
-      fieldset
-        legend Photo
-        label(for='photo_credit') Photo Credit
-        input(type='text' name='photo_credit' value=`${birds.photo.credit}` required='')
-        label(for='photo_upload') Upload New Photo
-        input#photo_upload(type='file' name='photo_upload' enctype="multipart/form-data")
-        label(for='photo_source') Photo Preview
-        img#upload_preview(src=`/images/${birds.photo.source}` alt='Photo of ')
-        input#upload_source(type='text' name='photo_source' value=`${birds.photo.source}` readonly='readonly') 
-      a(href=`/birds/${birds._id}/update`)
-        button UPDATE
+    div
+        h2
+        form(action=`/birds/${birds._id}/update` method='POST' enctype='multipart/form-data')
+            input(type='hidden' name='id')
+            fieldset
+                legend Common Names
+                label(for='primary_name') Primary Name
+                input(type='text' name='primary_name' value=`${birds.primary_name}` required='')
+                label(for='english_name') English Name
+                input(type='text' name='english_name' value=`${birds.english_name}` required='')
+                label(for='other_names') Other Names
+                textarea(name='other_names' value=`${birds.other_names}` rows='10' cols='50' )
+            fieldset
+                legend Taxonomy
+                label(for='scientific_name') Scientific Name
+                input(type='text' name='scientific_name' value=`${birds.scientific_name}` required='')
+                label(for='order') Order
+                input(type='text' name='order' value=`${birds.order}` required='')
+                label(for='family') Family
+                input(type='text' name='family' value=`${birds.family}` required='')
+            fieldset
+                legend Size
+                label(for='length') Length (cm)
+                input(type='number' name='length' value=`${birds.size.length.value}`)
+                label(for='weight') Weight (g)
+                input(type='number' name='weight' value=`${birds.size.weight.value}`)
+            fieldset
+                legend Conservation
+                label(for='status') Status
+                select#status(name='status')
+
+                    option(selected=`${birds.status}`) Not Threatened
+                    option Naturally Uncommon
+                    option Relict
+                    option Recovering
+                    option Declining
+                    option Nationally Increasing
+                    option Nationally Vulnerable
+                    option Nationally Endangered
+                    option Nationally Critical
+                    option Data Deficient
+            fieldset
+                legend Photo
+                label(for='photo_credit') Photo Credit
+                input(type='text' name='photo_credit' value=`${birds.photo.credit}` required='')
+                label(for='photo_upload') Upload New Photo
+                input#photo_upload(type='file' name='photo_upload' enctype="multipart/form-data")
+                label(for='photo_source') Photo Preview
+                img#upload_preview(src=`/images/${birds.photo.source}` alt='Photo of ')
+                input#upload_source(type='text' name='photo_source' value=`${birds.photo.source}` readonly='readonly') 
+            //- a(href=`/birds/${birds._id}/update`)
+            button(type='submit') UPDATE
 footer
-  p
-    span Data licensed from 
-    a(href='https://www.birdssnz.org.nz/') birdss New Zealand 
-    span for educational use within the University of Otago.
+    p
+        span Data licensed from 
+        a(href='https://www.birdssnz.org.nz/') birdss New Zealand 
+        span for educational use within the University of Otago.
